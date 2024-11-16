@@ -1,13 +1,22 @@
 {
 	"name": "Ubuntu",
 	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"runArgs": [
+		"--env-file",
+		".env"
+	],
+	"remoteEnv": {
+		"CURRENT": "${containerEnv:CURRENT}"
+	},
 	"features": {},
 	"forwardPorts": [],
-	"postCreateCommand": "/bin/bash /workspaces/onyx/setup.sh",
+	"postCreateCommand": "/bin/bash /workspaces/${CURRENT}/setup.sh",
 	"customizations": {
-		"extensions": [
-			"onyx-lang.onyx-vscode"
-		]
+		"vscode": {
+			"extensions": [
+				"onyxlang.onyxlang"
+			]
+		}
 	},
 	"workspaceFolder": "/workspaces"
 }
